@@ -9,6 +9,7 @@ const HOST = 'localhost'
 const HTTP_PORT = 1001;
 
 // FILE IMPORTS
+const AVAILABILTY_RESETTER = require('./schedulers/availability-resetter');
 const USER_CONTROLLER = require('./controllers/user-controller');
 const TIME_SLOT = require('./controllers/time-slot-controller');
 

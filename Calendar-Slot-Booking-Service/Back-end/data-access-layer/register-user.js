@@ -5,7 +5,7 @@ const MONGO_UTIL = require('../utils/mongo-util');
 //#region Function to insert user object into database
 exports.saveUser = async(object) => {
     try {
-        let current_time = new Date();
+        let current_time = new Date().getTime();
         let json = { error: null, result: null };
         let collection_name = MONGO_CONFIG.COLLECTIONS.USERS;
         let mongo_client = await MONGO_UTIL.dbClient();
@@ -19,7 +19,7 @@ exports.saveUser = async(object) => {
             json.error = "This user is already registered!";
             return json;
         }
-        object.timestamp = current_time.getTime();          // Insert current timestamp in unix epoch format
+        object.timestamp = current_time;          // Insert current timestamp in unix epoch format
         let response = await mongo_client.collection(collection_name).insertOne(object);
         if (response.insertedCount < 1) {
             json.error = "User registration error in database !";
