@@ -7,7 +7,7 @@ const DATABASE = {
 // Collections names in mongodb
 const COLLECTIONS = {
     USERS: 'users',
-    SLOTS: 'slots'
+    TIME_SLOTS: 'timeSlots'
 };
 
 module.exports = {

@@ -10,7 +10,7 @@ const HTTP_PORT = 1001;
 
 // FILE IMPORTS
 const USER_CONTROLLER = require('./controllers/user-controller');
-
+const TIME_SLOT = require('./controllers/time-slot-controller');
 
 APP.use(BODY_PARSER.urlencoded({ extended: false }))
 APP.use(BODY_PARSER.json())
@@ -32,7 +32,48 @@ APP.post('/user/registration', async(req, res) => {
 });
 //#endregion
 
+//#region GET API : Registered Users
+APP.get('/users', async(req, res) => {
+    let json = await USER_CONTROLLER.getRegisteredUsers();
+    if (json.error) {
+        res.status(404);        // Not Found
+        res.json({ "Error" : json.error });
+    } else {
+        res.status(200);        // OK
+        res.json({"Result":json.result});
+    }
+});
+//#endregion
 
+//#region POST API : User Login 
+APP.post('/login', async(req, res) => {
+    if (req._body) {
+        let json = await USER_CONTROLLER.authenticateUser(req.body);
+        if (json.error) {
+            res.status(401);        // Unauthorized
+            res.json({ "Error" : json.error });
+        } else {
+            res.status(200);        // OK
+            res.json({"Result":json.result});
+        }
+    }
+});
+//#endregion
+
+//#region POST API : Define Available Slots
+APP.post('/slot/registration',async(req, res) => {
+    if (req._body) {
+        let json = await TIME_SLOT.defineTimeSlot(req.body);
+        if (json.error) {
+            res.status(400);        // Bad Request
+            res.json({ "Error" : json.error });
+        } else {
+            res.status(201);        // Created
+            res.json({"Result":json.result});
+        }  
+    }
+});
+//#endregion
 
 const HTTP_SERVER = HTTP.createServer(APP);
 HTTP_SERVER.listen(HTTP_PORT, HOST);
