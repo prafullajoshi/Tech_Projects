@@ -76,6 +76,34 @@ APP.post('/slot/registration',async(req, res) => {
 });
 //#endregion
 
+//#region PUT API : Book Available Slots
+APP.put('/slot/booking', async(req, res) => {
+    if (req._body) {
+        let json = await TIME_SLOT.bookTimeSlot(req.body);
+        if (json.error) {
+            res.status(400);        // Bad Request
+            res.json({ "Error" : json.error });
+        } else {
+            res.status(201);        // Created
+            res.json({"Result":json.result});
+        }
+    }
+});
+//#endregion
+
+//#region GET API : Get All Available Slots of a Specific User
+APP.get('/slots/:_username', async(req, res) => {
+    let json = await TIME_SLOT.getAvailableTimeSlots(req);
+    if (json.error) {
+        res.status(404);        // Not Found
+        res.json({ "Error" : json.error });
+    } else {
+        res.status(200);        // OK
+        res.json({"Result":json.result});
+    }
+});
+//#endregion
+
 const HTTP_SERVER = HTTP.createServer(APP);
 HTTP_SERVER.listen(HTTP_PORT, HOST);
 
