@@ -1,3 +1,5 @@
+/** When this codebase will be deployed on server and will be kept running then this scheduler will reset the availability status to 0 at 12:00AM everyday, so that everyday's available time slots will be 0 at 12:00AM */
+
 // DECLARATION OF CONSTANTS
 const SCHEDULER = require('node-schedule');
 

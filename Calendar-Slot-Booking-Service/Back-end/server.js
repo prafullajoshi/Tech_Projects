@@ -1,4 +1,6 @@
-
+/**
+ * This file is the starting point of the application.
+ */
 // DECLRATION OF CONSTANTS 
 const EXPRESS = require('express');
 const BODY_PARSER = require('body-parser');
@@ -18,7 +20,7 @@ APP.use(BODY_PARSER.json())
 APP.use(CORS());
 
 
-//#region POST API : User Registration
+//#region POST API : User Registration : Parameters through body : first_name, last_name, username(email_id), password
 APP.post('/user/registration', async(req, res) => {
     if (req._body) {
         let json = await USER_CONTROLLER.registerUser(req.body);
@@ -33,7 +35,7 @@ APP.post('/user/registration', async(req, res) => {
 });
 //#endregion
 
-//#region GET API : Registered Users
+//#region GET API : Registered Users : No parameters
 APP.get('/users', async(req, res) => {
     let json = await USER_CONTROLLER.getRegisteredUsers();
     if (json.error) {
@@ -46,7 +48,7 @@ APP.get('/users', async(req, res) => {
 });
 //#endregion
 
-//#region POST API : User Login 
+//#region POST API : User Login : Parameters through body : username(email_id), password
 APP.post('/login', async(req, res) => {
     if (req._body) {
         let json = await USER_CONTROLLER.authenticateUser(req.body);
@@ -61,7 +63,7 @@ APP.post('/login', async(req, res) => {
 });
 //#endregion
 
-//#region POST API : Define Available Slots
+//#region POST API : Define Available Slots : Parameters through body : username(email_id), start_time, end_time     
 APP.post('/slot/registration',async(req, res) => {
     if (req._body) {
         let json = await TIME_SLOT.defineTimeSlot(req.body);
@@ -76,7 +78,7 @@ APP.post('/slot/registration',async(req, res) => {
 });
 //#endregion
 
-//#region PUT API : Book Available Slots
+//#region PUT API : Book Available Slots : Parameters through body : username(email_id), start_time, end_time
 APP.put('/slot/booking', async(req, res) => {
     if (req._body) {
         let json = await TIME_SLOT.bookTimeSlot(req.body);
@@ -91,7 +93,7 @@ APP.put('/slot/booking', async(req, res) => {
 });
 //#endregion
 
-//#region GET API : Get All Available Slots of a Specific User
+//#region GET API : Get All Available Slots of a Specific User : Parameters through params : username(email_id)
 APP.get('/slots/:_username', async(req, res) => {
     let json = await TIME_SLOT.getAvailableTimeSlots(req);
     if (json.error) {
