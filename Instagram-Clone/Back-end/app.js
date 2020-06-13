@@ -4,6 +4,8 @@ const APP = EXPRESS();
 const PORT = 5000;
 const {MONGO_URL} = require(`./keys`);
 
+require(`./models/user`);
+
 MONGOOSE.connect(MONGO_URL, {
     useNewUrlParser:true,
     useUnifiedTopology:true
