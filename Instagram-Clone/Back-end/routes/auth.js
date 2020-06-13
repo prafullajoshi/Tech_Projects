@@ -4,6 +4,10 @@ const ROUTER = EXPRESS.Router();
 const MONGOOSE = require(`mongoose`);
 const USER = MONGOOSE.model("User");
 const BCRYPT = require(`bcryptjs`);         // For hashing the password in MongoDB
+const JWT = require(`jsonwebtoken`);
+const {JWT_SECRET} = require(`../keys`);
+const REQUIRE_LOGIN = require(`../middleware/requireLogin`)
+
 
 ROUTER.post(`/signup`, (req, res) => {
     const { name, email, password } = req.body;
@@ -49,7 +53,9 @@ ROUTER.post(`/signin`,(req, res) => {
             BCRYPT.compare(password, savedUser.password)
                 .then(doMatch => {
                     if (doMatch) {
-                        res.json({message: `Successfully Signed In`});
+                        // res.json({message: `Successfully Signed In`});
+                        const token = JWT.sign({_id:savedUser._id}, JWT_SECRET);
+                        res.json({token:token});
                     }
                     else{
                         return res.status(422).json({error:`Invalid email or password`});
@@ -64,6 +70,9 @@ ROUTER.post(`/signin`,(req, res) => {
         })
 })
 
+ROUTER.get(`/protected`,REQUIRE_LOGIN, (req, res) => {
+    res.send("Hello");
+})
 
 
 module.exports = ROUTER;
