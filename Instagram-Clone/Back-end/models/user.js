@@ -14,4 +14,4 @@ const USER_SCHEMA = new MONGOOSE.Schema({
     },
 })
 
-MONGOOSE.model(`Users`, USER_SCHEMA);
+MONGOOSE.model(`User`, USER_SCHEMA);
