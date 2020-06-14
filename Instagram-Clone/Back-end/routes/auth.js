@@ -1,5 +1,4 @@
 const EXPRESS = require(`express`);
-const { Router } = require("express");
 const ROUTER = EXPRESS.Router();
 const MONGOOSE = require(`mongoose`);
 const USER = MONGOOSE.model("User");
@@ -70,9 +69,9 @@ ROUTER.post(`/signin`,(req, res) => {
         })
 })
 
-ROUTER.get(`/protected`,REQUIRE_LOGIN, (req, res) => {
-    res.send("Hello");
-})
+// ROUTER.get(`/protected`,REQUIRE_LOGIN, (req, res) => {
+//     res.send("Hello");
+// })
 
 
 module.exports = ROUTER;
