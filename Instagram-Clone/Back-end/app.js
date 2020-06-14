@@ -2,11 +2,11 @@ const EXPRESS = require(`express`);
 const MONGOOSE = require(`mongoose`);
 const APP = EXPRESS();                      // Invoking Express
 const PORT = 5000;
-const {MONGO_URL} = require(`./keys`);
+const { MONGO_URL } = require(`./keys`);
 
 MONGOOSE.connect(MONGO_URL, {
-    useNewUrlParser:true,
-    useUnifiedTopology:true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 });
 
 MONGOOSE.connection.on(`connected`, () => {
@@ -27,6 +27,6 @@ APP.use(require(`./routes/post`));
 // MongoDB User User : prafulla
 // MongoDB User Password : prafs123
 
-APP.listen(PORT,() => {
+APP.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`);
 })

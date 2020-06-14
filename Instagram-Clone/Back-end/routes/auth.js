@@ -4,7 +4,7 @@ const MONGOOSE = require(`mongoose`);
 const USER = MONGOOSE.model("User");
 const BCRYPT = require(`bcryptjs`);         // For hashing the password in MongoDB
 const JWT = require(`jsonwebtoken`);
-const {JWT_SECRET} = require(`../keys`);
+const { JWT_SECRET } = require(`../keys`);
 const REQUIRE_LOGIN = require(`../middleware/requireLogin`)
 
 
@@ -39,25 +39,25 @@ ROUTER.post(`/signup`, (req, res) => {
         })
 })
 
-ROUTER.post(`/signin`,(req, res) => {
-    const {email, password} = req.body;
+ROUTER.post(`/signin`, (req, res) => {
+    const { email, password } = req.body;
     if (!email || !password) {
-        return res.status(422).json({error : `Please add email or password`});
+        return res.status(422).json({ error: `Please add email or password` });
     }
-    USER.findOne({email:email})
+    USER.findOne({ email: email })
         .then(savedUser => {
             if (!savedUser) {
-                return res.status(422).json({error:`Invalid email or password`});
+                return res.status(422).json({ error: `Invalid email or password` });
             }
             BCRYPT.compare(password, savedUser.password)
                 .then(doMatch => {
                     if (doMatch) {
                         // res.json({message: `Successfully Signed In`});
-                        const token = JWT.sign({_id:savedUser._id}, JWT_SECRET);
-                        res.json({token:token});
+                        const token = JWT.sign({ _id: savedUser._id }, JWT_SECRET);
+                        res.json({ token: token });
                     }
-                    else{
-                        return res.status(422).json({error:`Invalid email or password`});
+                    else {
+                        return res.status(422).json({ error: `Invalid email or password` });
                     }
                 })
                 .catch(err => {
