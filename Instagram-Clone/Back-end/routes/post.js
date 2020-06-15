@@ -25,15 +25,41 @@ ROUTER.post(`/createpost`, REQUIRE_LOGIN, (req, res) => {
 })
 
 
+// ROUTER.get(`/allpost`, (req, res) => {
+//     POST.find()
+//         .populate("postedBy","_id name")
+//         .then(posts => {
+//             res.json({ posts: posts });
+//         })
+//         .catch(err => {
+//             console.log(err);
+//         })
+// })
+
 ROUTER.get(`/allpost`, (req, res) => {
     POST.find()
-        .populate("postedBy","_id name")
+        // .populate("_id name")
+        // .populate("postedBy","name", "User")
         .then(posts => {
+            console.log(posts);
             res.json({ posts: posts });
         })
         .catch(err => {
             console.log(err);
         })
+        
+        // .exec(function (err, posts) {
+        //     if (err) return handleError(err);
+        
+        //     console.log(`posts :: ${posts}`);
+        //     // prints "The author is Ian Fleming"
+        //   });
+        // .then(posts => {
+        //     res.json({ posts: posts });
+        // })
+        // .catch(err => {
+        //     console.log(err);
+        // })
 })
 
 module.exports = ROUTER;
