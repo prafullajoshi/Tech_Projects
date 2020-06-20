@@ -30,7 +30,8 @@ const EXPRESS = require(`express`);
 const MONGOOSE = require(`mongoose`);
 const APP = EXPRESS();                      // Invoking Express
 const PORT = 5000;
-const { MONGO_URL } = require(`./config/keys`);
+const MONGO = require(`./config/keys`);
+const MONGO_URL = MONGO.DATABASE.URL;
 
 MONGOOSE.connect(MONGO_URL, {
     useNewUrlParser: true,
@@ -46,11 +47,12 @@ MONGOOSE.connection.on(`error`, (err) => {
 })
 
 require(`./model/cab`);
+require(`./model/user`);
 // require(`./models/post`);
 
 APP.use(EXPRESS.json());
 APP.use(require(`./api/routes/auth`));
-// APP.use(require(`./routes/post`));
+// APP.use(require(`./api/routes/auth`));
 
 // MongoDB User User : prafulla
 // MongoDB User Password : prafs123
