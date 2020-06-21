@@ -52,7 +52,7 @@ require(`./model/user`);
 
 APP.use(EXPRESS.json());
 APP.use(require(`./api/routes/auth`));
-// APP.use(require(`./api/routes/auth`));
+APP.use(require(`./api/routes/auth`));
 
 // MongoDB User User : prafulla
 // MongoDB User Password : prafs123

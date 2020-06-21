@@ -4,7 +4,8 @@ const MONGOOSE = require(`mongoose`);
 const USER = MONGOOSE.model("User");
 const BCRYPT = require(`bcryptjs`);         // For hashing the password in MongoDB
 const JWT = require(`jsonwebtoken`);
-const { JWT_SECRET } = require(`../../config/keys`);
+const { AUTH } = require("../../config/keys");
+require(`../../config/keys`);
 // const REQUIRE_LOGIN = require(`../middleware/requireLogin`)
 
 //#region POST API for Signup
@@ -55,7 +56,7 @@ ROUTER.post(`/signin`, (req, res) => {
                 .then(doMatch => {
                     if (doMatch) {
                         // res.json({message: `Successfully Signed In`});
-                        const token = JWT.sign({ _id: savedUser._id }, JWT_SECRET);
+                        const token = JWT.sign({ _id: savedUser._id }, AUTH.JWT_SECRET );
                         res.json({ token: token });
                     }
                     else {
