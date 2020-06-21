@@ -4,9 +4,12 @@ const MONGOOSE = require(`mongoose`);
 const USER = MONGOOSE.model("User");
 const BCRYPT = require(`bcryptjs`);         // For hashing the password in MongoDB
 const JWT = require(`jsonwebtoken`);
-const { AUTH } = require("../../config/keys");
-require(`../../config/keys`);
-// const REQUIRE_LOGIN = require(`../middleware/requireLogin`)
+const AUTH = require(`../../config/keys`);
+const REQUIRE_LOGIN = require(`../../middleware/require-login`);
+
+const HELPER = require(`../helpers/cab-helpers`);
+
+
 
 //#region POST API for Signup
 ROUTER.post(`/signup`, (req, res) => {
@@ -73,9 +76,40 @@ ROUTER.post(`/signin`, (req, res) => {
 })
 //#endregion
 
-// ROUTER.get(`/protected`,REQUIRE_LOGIN, (req, res) => {
-//     res.send("Hello");
-// })
+//#region GET API for booking a cab
+ROUTER.get('/book',REQUIRE_LOGIN, function(req, res, next) {
+    // console.log(`Welcome to Cab Booking!!`);
+    if (req.query.lattitude && req.query.longitude && !isNaN(req.query.lattitude) && !isNaN(req.query.longitude)) {
+      let lattitude = parseInt(req.query.lattitude);
+      let longitude = parseInt(req.query.longitude);
+      let userLocation = {
+        lattitude: lattitude,
+        longitude: longitude
+      };
+      let cab = HELPER.getClosestCab(userLocation);
+      if (cab) {
+        cab.isBooked = true;
+        res.json({
+          message: "Cab booked!",
+          cabID: cab.id,
+          driverName: cab.driverName,
+          driverNumber: cab.driverNumber,
+          location: cab.location
+        });
+      } else {
+         res.json({
+           message: "No cabs available!"
+         });
+      }
+  
+    } else {
+      res.json({
+        message: "Invalid/Missing parameters"
+      });
+    }
+
+  });
+//#endregion
 
 
 module.exports = ROUTER;

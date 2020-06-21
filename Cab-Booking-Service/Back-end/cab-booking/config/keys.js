@@ -14,12 +14,12 @@ const COLLECTIONS = {
     USERS: 'users',
 };
 
-const AUTH ={
-    JWT_SECRET: `qwrqewfdnkiugibecwpjzmka`
-}
+// const AUTH ={
+//     JWT_SECRET: `qwrqewfdnkiugibecwpjzmka`
+// }
 
 module.exports = {
   DATABASE,
   COLLECTIONS,
-  AUTH
+  JWT_SECRET: `qwrqewfdnkiugibecwpjzmka`
 };
