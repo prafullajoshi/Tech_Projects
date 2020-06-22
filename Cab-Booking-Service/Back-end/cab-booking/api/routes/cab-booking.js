@@ -77,9 +77,7 @@ ROUTER.post(`/signin`, (req, res) => {
 //#endregion
 
 //#region GET API for booking a cab
-ROUTER.get('/book',REQUIRE_LOGIN, async function(req, res, next) {
-    console.log(`req :: ${req.user.email}`);
-    
+ROUTER.get('/book',REQUIRE_LOGIN, async function(req, res, next) {    
     if (req.query.sourceLattitude && req.query.sourceLongitude && !isNaN(req.query.sourceLattitude) && !isNaN(req.query.sourceLongitude)) {
       let lattitude = parseInt(req.query.sourceLattitude);
       let longitude = parseInt(req.query.sourceLongitude);
@@ -111,13 +109,11 @@ ROUTER.get('/book',REQUIRE_LOGIN, async function(req, res, next) {
         })
         booking.save()
             .then(booking => {
-                // res.status(200).json({ message: `Booking Saved Successfully!!` });
                 console.log(`Booking Saved Successfully!!`);
             })
             .catch(err => {
                 console.log(err);
             })
-
         res.json({
           message: "Cab booked!",
           cabID: cab.id,
