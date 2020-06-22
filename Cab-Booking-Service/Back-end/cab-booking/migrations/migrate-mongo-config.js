@@ -6,7 +6,7 @@ const config = {
     url: "mongodb://localhost:27017",
 
     // TODO Change this to your database name:
-    databaseName: "YOURDATABASENAME",
+    databaseName: "cbs_db",
 
     options: {
       useNewUrlParser: true, // removes a deprecation warning when connecting
