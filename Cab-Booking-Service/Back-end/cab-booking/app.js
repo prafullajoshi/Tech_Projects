@@ -22,13 +22,14 @@ MONGOOSE.connection.on(`error`, (err) => {
 
 require(`./model/cab`);
 require(`./model/user`);
+require(`./model/booking`);
 // require(`./model/`);
 // require(`./models/post`);
 
 APP.use(EXPRESS.json());
 // APP.use(require(`./api/routes/cab-booking`));
 // APP.use(require(`./middleware/require-login`));
-APP.use(require(`./api/routes/auth`));
+APP.use(require(`./api/routes/cab-booking`));
 
 // require(`./api/routes/cab-booking`);
 
