@@ -1,0 +1,89 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>Prafulla's Blog</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+  </head>
+
+  <body>
+
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home' %}">Prafulla Joshi</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" href="{% url 'aboutme' %}">About Me</a>
+          <li class="active">   <a class="nav-item nav-link" href="{% url 'otherwork' %}">Other Work</a></li>
+          <a class="nav-item nav-link" href="{% url 'certificates' %}">Certificates & Seminars</a>
+            <a class="nav-item nav-link" href="{% url 'projects' %}">Project Undertaken</a>
+            <a class="nav-item nav-link" href="http://linkedin.com/in/prafulla-joshi">LinkedIn</a>
+            <a class="nav-item nav-link" href="{% static 'FakeResume.pdf' %}">Resume</a>
+            <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main role="main">
+      <div class="container">
+        <h1 class="text-center pt-3">Notable Work by Prafulla</h1>
+
+        <br>
+
+        <ul>
+          <li> <h5> <p> I was one of the member of organizing committee of Haxk-X-Ploit. This was an ethical hacking workshop conducted by Lucedius Tech and organzied
+                        by our team. All the infrastructural arrangement was done by us for the participants. This was two day workshop by Mr Rahul Tyagi, VP of Lucedius Tech.
+                        Workshop was executed in deciplined manner without any issue. Feedback to us about workshop was excellent from the participants. While doing this, we
+                        came to realise that how things actually work and what needs to be done in order to make something successful. You should be knowing something about
+                        everything that is needed or at least you should be in a team wherein every member is aware about something in everything, then only chances of
+                        getting cheated reduce. One needs to possess mangerial skill, planning, work delegation capability, financial management ability for making such things
+                        successful.
+                   </p>
+              </h5>
+        </li>
+        <hr>
+        <br>
+        <li> <h5> <p>I have worked for campagning and sponsership in AISSMS COE Engineering Today event. There were many events organized in college and sponsership and participants
+                     were needed. Some workshops were also arranged by college. For that event, I have volunteerly worked for sponsership and campagning both. For these two activities
+                     one needs to possess marketing skills and convincing power at the same time. Patience is the key to success in such activities. I feel proud to have member of Such
+                     team and in that year, sponsership and campagning team had been rewarded for the most of the sponsership and participants share.
+                  </p>
+             </h5>
+        </li>
+        <hr>
+        </ul>
+
+
+
+      </div>
+    </main>
+
+    <footer class="text-muted">
+      <div class="container text-center">
+        <p>&copy; CopyRight Prafulla Joshi {% now "Y" %}</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+  </html>
